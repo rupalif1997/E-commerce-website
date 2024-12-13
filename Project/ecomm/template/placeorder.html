@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<!-- CART content start -->
+<div class="row mt-5">
+    <div class="col-md-9">
+
+        <h5 class="bg-danger text-white p-3">Customer detail</h5>
+        {% for x in products %}
+        {% if forloop.counter == 1 %}
+        <p><strong>Name:</strong>&nbsp;&nbsp;&nbsp;{{x.uid.username}}</p>
+        <p><strong>Mobile:</strong>&nbsp;&nbsp;&nbsp;9996658569</p>
+        <p><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+        <br><br>
+        <div class="row">
+            <h5 class="bg-danger text-white p-3">product detail</h5>
+            {% for x in products %}
+            <div class="col-md-4">
+                <img src="{{x.pid.pimage.url}}" width="80%" height="250px" />
+            </div>
+
+            <div class="col-md-8">
+                <p><strong>Product name :</strong>&nbsp;&nbsp;&nbsp;{{x.pid.name}}</p>
+                <p><strong>Product price :</strong>&nbsp;&nbsp;&nbsp;{{x.pid.price}}</p>
+                {% if x.pid.cat == 1 %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Mobile</p>
+                {% elif x.pid.cat == 2 %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Shoes</p>
+                {% else %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Clothes</p>
+                {% endif %}
+                <p><strong>Product discription :</strong>&nbsp;&nbsp;&nbsp;{{x.pid.pdetails}}</p>
+                <p>
+                    <strong>QTY:</strong>
+                    <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                    <input type="number" value="{{x.qty}}">
+                    <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></a>
+                    </p>
+                    <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+            </div><br><br>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- customer and product details -->
+
+    <div class="col-md-3">
+        <h5 class="bg-danger text-white p-3">Total Amount</h5>
+        <p><strong>Total({{n}} items) :</strong>Rs.{{total}}</p>
+        <hr>
+        <p><strong>Toatl amount: </strong>Rs.{{total}}</p>
+        <a href="/makepayment"><button class="btn btn-danger">Make payment</button></a>
+    </div>
+    <!-- Total amount section -->
+
+</div>
+<!--CART content end-->
+
+{% endblock 'main' %}

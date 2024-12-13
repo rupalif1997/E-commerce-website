@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <title>Registration page</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <a href="/home" style="text-decoration: none;">Home</a>
+            </div>
+            <div class="col-md-4 shadow mt-5 p-4 mx-auto">
+                <h2>Registration</h2>
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+                <form method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Input1" class="form-label">Username : </label>
+                        <input type="text" class="form-control" id="Input1" name="uname" placeholder="Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Input2" class="form-label">Password : </label>
+                        <input type="password" class="form-control" id="Input2" name="upass" placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Input3" class="form-label">Confirm password : </label>
+                        <input type="password" class="form-control" id="Input3" name="ucpass"
+                            placeholder="Confirm Password">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-danger">Register</button><br>
+                        Already a user? <a href="/login" style="text-decoration: none;">Login</a>
+                    </div>
+                    {% if success %}
+                    <div class="alert alert-success">
+                        {{success}}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/proper.min.js' %}"></script>
+</body>
+
+</html>

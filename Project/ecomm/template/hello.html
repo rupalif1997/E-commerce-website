@@ -1,0 +1,61 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+
+<body>
+    <h1>Hello, this is my ecomm template as a response</h1>
+    <p>Data is: {{greet}} </p>
+
+    <!-- {% comment %} this is also use to comment the block-->
+    {% if x > y %}
+    <p>{{x}} is greater than {{y}}.</p>
+
+    {% elif x < y %} <p>{{y}} is greater than {{x}}.</p>
+
+        {% else %}
+        <p>{{x}} and {{y}} are equal</p>
+        {% endif %}
+        <!-- {% endcomment %} end of comment block-->
+
+        <!-- for loop to iterate the list -->
+        <!-- <p>{{li}}</p> -->
+        {% for i in li %}
+        <p>{{i}}</p>
+        {% endfor %}
+
+        <!-- Product -->
+        {% for i in product %}
+        <p>{{i}}</p>
+        {%endfor%}
+
+        <!-- Getting perticular value -->
+        {% for i in product%}
+        <!-- <strong>ID:</strong>{{i.id}}<br> -->
+        <!-- never display ID , it will increment by database -->
+        <strong>{{forloop.counter}}</strong>
+        <strong>Name: </strong>{{i.name}}<br>
+        <strong>Category: </strong>{{i.cat}}<br>
+        <strong>Price: </strong>{{i.price}}<br><br>
+        <hr>
+        {% endfor %}
+
+        <button onclick="greet()"> click me </button><br><br>
+
+        <img src="{% static 'images/er.jpg' %}" height="10%" width="10%"><br>
+        <img src="{% static 'images/stu1.jpg' %}" height="10%" width="10%"><br>
+        <img src="{% static 'images/stu2.jpg' %}" height="10%" width="10%"><br>
+        <img src="{% static 'images/stu3.jpg' %}" height="10%" width="10%"><br>
+        <img src="{% static 'images/stu4.jpg' %}" height="10%" width="10%">
+
+
+</body>
+
+</html>
